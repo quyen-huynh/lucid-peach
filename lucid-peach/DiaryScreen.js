@@ -6,6 +6,8 @@ import {
   StyleSheet,
   ScrollView,
   StatusBar,
+  Linking,
+  Container,
 } from 'react-native';
 import Slider from '@react-native-community/slider';
 
@@ -75,7 +77,8 @@ class PinkSlider extends React.Component {
                 <Text style={styles.paragraph}>
                   {'\n'}Yay! It is always good to feel happy. Here are some tips
                   to keep being joyful and positive, especially during this
-                  time!
+                  time!{'\n\n'}
+                  {happinessTips()}
                 </Text>
               );
             } else if (0 < this.state.value && this.state.value <= 5) {
@@ -83,7 +86,8 @@ class PinkSlider extends React.Component {
                 <Text style={styles.paragraph}>
                   {'\n'}Oh no! Looks like it hasn't been a good day for you.
                   Don't worry, the sky is always clear after a thunderstorm.
-                  Check out some tips to cheer yourself up!
+                  Check out some tips to cheer yourself up!{'\n\n'}
+                  {happinessTips()}
                 </Text>
               );
             }
@@ -93,7 +97,8 @@ class PinkSlider extends React.Component {
                 <Text style={styles.paragraph}>
                   {'\n'}Fabulous! You've managed to stay productive even in this
                   difficult time. Want to know some tricks to maintain your
-                  productivity? Check them out below!
+                  productivity? Check them out below!{'\n\n'}
+                  {productivityTips()}
                 </Text>
               );
             } else if (0 < this.state.value && this.state.value <= 5) {
@@ -101,7 +106,8 @@ class PinkSlider extends React.Component {
                 <Text style={styles.paragraph}>
                   {'\n'}You're not alone! Staying productive is not easy
                   especially during this difficult time. Here is some advice to
-                  boost your productivity!
+                  boost your productivity!{'\n\n'}
+                  {productivityTips()}
                 </Text>
               );
             }
@@ -110,6 +116,58 @@ class PinkSlider extends React.Component {
       </View>
     );
   }
+}
+
+function happinessTips() {
+  return (
+    <>
+      <Text
+        style={styles.link}
+        onPress={() =>
+          Linking.openURL(
+            'https://www.lifehack.org/articles/communication/10-scientifically-proven-ways-stay-happy-all-the-time.html'
+          )
+        }>
+        10 Scientifically Proven Ways To Stay Happy All The Time
+      </Text>
+      {"\n\n"}
+      <Text
+        style={styles.link}
+        onPress={() =>
+          Linking.openURL(
+            'https://www.bbc.com/future/article/20200317-covid-19-how-to-stay-happy-during-the-coronavirus-outbreak'
+          )
+        }>
+        Tips For How To Stay Happy In Troubling Times
+      </Text>
+    </>
+  );
+}
+
+function productivityTips() {
+  return (
+    <>
+      <Text
+        style={styles.link}
+        onPress={() =>
+          Linking.openURL(
+            'https://www.inc.com/jackelyn-ho/do-these-8-things-every-day-to-stay-productive.html'
+          )
+        }>
+        Do These 8 Things Every Day To Stay Productive
+      </Text>
+      {"\n\n"}
+      <Text
+        style={styles.link}
+        onPress={() =>
+          Linking.openURL(
+            'https://www.lifehack.org/articles/productivity/50-simple-ways-to-stay-productive.html'
+          )
+        }>
+        50 Simple Things To Stay Productive
+      </Text>
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -136,6 +194,11 @@ const styles = StyleSheet.create({
   paragraph: {
     fontSize: 18,
     fontFamily: 'Baskerville',
+  },
+  link: {
+    fontSize: 18,
+    fontFamily: 'Baskerville',
+    textDecorationLine: 'underline',
   },
   diaryInput: {
     height: 100,
